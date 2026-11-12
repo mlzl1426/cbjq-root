@@ -1,0 +1,61 @@
+# ==== 二进制与游戏资源：一律不入库 ====
+*.apk
+*.apks
+*.aab
+*.apk.idsig
+*.obb
+*.pak
+*.zip
+*.7z
+*.rar
+*.tar
+*.gz
+*.so
+*.dex
+*.jar
+*.bin
+
+# ==== 密钥与证书：绝不入库 ====
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+*.key
+*.crt
+*.cer
+*.der
+!configs/**/*.example.*
+
+# ==== 构建 / 运行产物 ====
+*.log
+*.tmp
+*.bak
+*.unsigned
+*.local.apk
+screenshots/
+shots/
+out/
+dist/
+build/
+rebuild/
+*.png.tmp
+
+# ==== Python ====
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.pytest_cache/
+
+# ==== 编辑器与系统 ====
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==== 本地私有笔记（不想公开的排查记录放这里）====
+private/
+NOTES.local.md

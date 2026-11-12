@@ -1,0 +1,87 @@
+{
+  "log": {
+    "level": "info",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "dns",
+        "type": "udp",
+        "server": "223.5.5.5"
+      }
+    ],
+    "final": "dns"
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "address": [
+        "172.19.0.1/30"
+      ],
+      "auto_route": true,
+      "stack": "gvisor",
+      "mtu": 1500,
+      "include_package": [
+        "com.seasun.snowbreak.google"
+      ]
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "direct",
+      "tag": "direct"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "protocol": "dns",
+        "action": "hijack-dns"
+      },
+      {
+        "action": "sniff"
+      },
+      {
+        "port": 13443,
+        "action": "route",
+        "outbound": "direct",
+        "override_address": "127.0.0.1",
+        "override_port": 13443
+      },
+      {
+        "port": 18443,
+        "action": "route",
+        "outbound": "direct",
+        "override_address": "127.0.0.1",
+        "override_port": 18443
+      },
+      {
+        "port": 31443,
+        "action": "route",
+        "outbound": "direct",
+        "override_address": "127.0.0.1",
+        "override_port": 31443
+      },
+      {
+        "domain": [
+          "snowbreak-ea-serverlist.amazingseasuncdn.com"
+        ],
+        "port": 443,
+        "action": "route",
+        "outbound": "direct",
+        "override_address": "127.0.0.1",
+        "override_port": 21443
+      },
+      {
+        "port": 5200,
+        "action": "route",
+        "outbound": "direct",
+        "override_address": "127.0.0.1",
+        "override_port": 31000
+      }
+    ],
+    "final": "direct"
+  }
+}
